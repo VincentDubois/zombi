@@ -11,6 +11,10 @@ public class Etat {
 	
 	private long lastUpdate;
 	
+	public Etat(){
+		initialiser();
+	}
+	
 	public void initialiser(){
 		faim = new Jauge();
 		sommeil = new Jauge();
