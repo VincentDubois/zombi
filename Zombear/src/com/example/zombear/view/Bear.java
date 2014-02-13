@@ -1,7 +1,7 @@
 package com.example.zombear.view;
 
+
 import com.example.zombear.R;
-import com.example.zombear.R.drawable;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,16 +13,20 @@ import android.graphics.RectF;
 
 public class Bear {
 
-	private float SPEED = 0.01f;
+	//private float SPEED = 0.1f;
 	private float G = 0.005f;
 	
 	private Bitmap bmp;
 	private Paint paintBlack = new Paint();
 
-	private PointF posF,posS;
-	private PointF targetF,targetS;
+	public PointF posF,posS;
+	public PointF targetF,targetS;
 	
 	private float z,vz;
+	
+	
+	//ajout d'un champ de type Deplacer
+	public Deplacer deplace;
 	
 	
 	boolean hasTarget;
@@ -41,6 +45,10 @@ public class Bear {
 		
 		hasTarget = false;
 		
+		//initialisation du champ (instancier deplacer)
+		// -------------------------------------------
+		deplace = new Deplacer(this,1);
+
 	}
 
 
@@ -66,7 +74,10 @@ public class Bear {
 
 	public void act() {
 		
-		move(SPEED);
+		 deplace.move();// remplacer par l'appel à la méthode move du champ
+		//---------------------------------------------------------------------
+		
+		
 		
 		if (z>0 || vz != 0){
 			vz -= G;
@@ -78,19 +89,6 @@ public class Bear {
 	}
 
 
-	public void move(float speed) {
-		if (hasTarget){
-			float d = dist(targetF,posF);
-			if (dist(targetF,posF) < speed) {
-				posF.set(targetF);
-				hasTarget = false;
-			} else {
-				posF.offset((targetF.x-posF.x)/d*speed,
-						    (targetF.y-posF.y)/d*speed);
-			}
-			Background.toScreen(posF, posS);
-		}
-	}
 
 
 	public void setTarget(float xt, float yt) {
