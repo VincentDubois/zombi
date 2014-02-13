@@ -2,6 +2,7 @@ package com.example.zombear.view;
 
 import com.example.zombear.R;
 import com.example.zombear.R.drawable;
+import com.example.zombear.logic.*;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -24,6 +25,8 @@ public class Bear {
 	
 	private float z,vz;
 	
+	// champ IA
+	private IA ia;
 	
 	boolean hasTarget;
 
@@ -40,7 +43,8 @@ public class Bear {
 		targetS = new PointF();
 		
 		hasTarget = false;
-		
+		// instance ia
+		ia = new IA();
 	}
 
 
@@ -67,6 +71,8 @@ public class Bear {
 	public void act() {
 		
 		move(SPEED);
+		//récupérer l'action en cours
+		ia.getAction();
 		
 		if (z>0 || vz != 0){
 			vz -= G;
