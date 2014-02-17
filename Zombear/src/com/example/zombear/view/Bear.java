@@ -1,8 +1,6 @@
 package com.example.zombear.view;
 
 
-import com.example.zombear.R;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +8,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
+
+import com.example.zombear.R;
+import com.example.zombear.logic.IA;
 
 public class Bear {
 
@@ -24,6 +25,8 @@ public class Bear {
 	
 	private float z,vz;
 	
+	// champ IA
+	private IA ia;
 	
 	//ajout d'un champ de type Deplacer
 	public Deplacer deplace;
@@ -44,7 +47,10 @@ public class Bear {
 		targetS = new PointF();
 		
 		hasTarget = false;
-		
+
+		// instance ia
+		ia = new IA();
+
 		//initialisation du champ (instancier deplacer)
 		// -------------------------------------------
 		deplace = new Deplacer(this,1);
@@ -73,10 +79,10 @@ public class Bear {
 	
 
 	public void act() {
-		
+
+		//récupérer l'action en cours
+		ia.getAction();
 		 deplace.move();// remplacer par l'appel à la méthode move du champ
-		//---------------------------------------------------------------------
-		
 		
 		
 		if (z>0 || vz != 0){
