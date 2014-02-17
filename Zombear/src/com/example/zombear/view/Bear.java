@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.os.Bundle;
 
 import com.example.zombear.R;
 import com.example.zombear.logic.IA;
@@ -50,6 +51,29 @@ public class Bear {
 
 		// instance ia
 		ia = new IA();
+
+		//initialisation du champ (instancier deplacer)
+		// -------------------------------------------
+		deplace = new Deplacer(this,1,true,targetF);
+
+	}
+	
+	public Bear(Context context, Bundle b){
+		bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.zombear_sprite);
+		paintBlack.setColor(0x77000000);
+		
+		posF = new PointF(0.5f,0.5f);
+		posS = new PointF();
+		
+		Background.toScreen(posF, posS);
+		
+		targetF = new PointF();
+		targetS = new PointF();
+		
+		hasTarget = false;
+
+		// instance ia
+		ia = new IA(b);
 
 		//initialisation du champ (instancier deplacer)
 		// -------------------------------------------
@@ -121,6 +145,10 @@ public class Bear {
 
 	public void jump() {
 		vz = 10*G;
+	}
+	
+	public Bundle getSaveBundle(){
+		return ia.getSaveBundle();
 	}
 
 }

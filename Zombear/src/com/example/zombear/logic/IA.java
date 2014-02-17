@@ -1,5 +1,7 @@
 package com.example.zombear.logic;
 
+import android.os.Bundle;
+
 public class IA {
 	
 	public Etat etat;
@@ -9,7 +11,11 @@ public class IA {
 	public IA(){
 		etat= new Etat();
 		/*IA ia=new IA();*/
-		
+	}
+	
+	public IA(Bundle b){
+		etat= new Etat(b);
+		/*IA ia=new IA();*/
 	}
 	
 	public int/*Action*/ getAction(){
@@ -56,6 +62,9 @@ public class IA {
 			}
 		}	
 	
+		public Bundle getSaveBundle(){
+			return etat.getSaveBundle();
+		}
 		
 	}
 
