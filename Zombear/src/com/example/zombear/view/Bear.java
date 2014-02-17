@@ -145,7 +145,6 @@ public class Bear {
 
 	public void jump() {
 		vz = 10*G;
-		ia.etat.update();
 	}
 	
 	public Bundle getSaveBundle(){
