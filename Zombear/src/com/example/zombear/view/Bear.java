@@ -47,7 +47,7 @@ public class Bear {
 		
 		//initialisation du champ (instancier deplacer)
 		// -------------------------------------------
-		deplace = new Deplacer(this,1);
+		deplace = new Deplacer(this,1,true,targetF);
 
 	}
 
@@ -73,11 +73,9 @@ public class Bear {
 	
 
 	public void act() {
-		
-		 deplace.move();// remplacer par l'appel à la méthode move du champ
+		deplace.move();// remplacer par l'appel à la méthode move du champ
 		//---------------------------------------------------------------------
-		
-		
+				
 		
 		if (z>0 || vz != 0){
 			vz -= G;
@@ -103,7 +101,7 @@ public class Bear {
 		
 		hasTarget = true;
 		
-		if (canJump()) jump();
+		
 	}
 
 

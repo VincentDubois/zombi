@@ -12,12 +12,25 @@ public class Deplacer {
  // champ bear
 	public Bear bear;
 	public float speed;
+	// jump
+	public boolean jump;
 	
-	public Deplacer(Bear bear,float speed) {
+	// target 
+	public PointF target;
+	// 
+	
+	//boolean fini
+	public boolean fini;
+	
+	
+	
+	public Deplacer(Bear bear,float speed, boolean jump, PointF target) {
 		super();
 		this.bear = bear;
 		this.speed = speed*SPEED;
-
+		this.jump = jump;
+		this.target = target;
+		this.fini = false;
 	}
 
 
@@ -28,20 +41,20 @@ public class Deplacer {
 	
 	public void move() { //mettre en champ float speed
 		if (bear.hasTarget){  //--------------------------------
-			float d = dist(bear.targetF,bear.posF);
-			if (dist(bear.targetF,bear.posF) < speed) {
-				bear.posF.set(bear.targetF);
+			float d = dist(target,bear.posF);
+			if (dist(target,bear.posF) < speed) {
+				bear.posF.set(target);
 				bear.hasTarget = false;
+				fini = true; //arrivé a dst...
 			} else {
-				bear.posF.offset((bear.targetF.x-bear.posF.x)/d*speed,
-						    (bear.targetF.y-bear.posF.y)/d*speed);
+				bear.posF.offset((target.x-bear.posF.x)/d*speed,
+						    (target.y-bear.posF.y)/d*speed);  //bear.targetF remplacer par target
 			}
 			Background.toScreen(bear.posF, bear.posS);
 		}
+		if (jump==true && bear.canJump()){
+			bear.jump();
+			jump=false;
+		}
 	}
-
-
-
-
-
 }
