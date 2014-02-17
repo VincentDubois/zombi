@@ -49,7 +49,7 @@ public class Bear {
 		hasTarget = false;
 
 		// instance ia
-		ia = new IA();
+		ia = new IA(this);
 
 		//initialisation du champ (instancier deplacer)
 		// -------------------------------------------
@@ -81,8 +81,7 @@ public class Bear {
 	public void act() {
 
 		//récupérer l'action en cours
-		ia.getAction();
-		 deplace.move();// remplacer par l'appel à la méthode move du champ
+		ia.getAction().move();// remplacer par l'appel à la méthode move du champ
 		
 		
 		if (z>0 || vz != 0){

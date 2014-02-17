@@ -1,58 +1,79 @@
 package com.example.zombear.logic;
 
+import com.example.zombear.view.Bear;
+import com.example.zombear.view.Deplacer;
+
 public class IA {
 	
 	public Etat etat;
-	public int/*Action*/ action;
+	public Deplacer deplacement;
+	public Bear zombie;
 	
 	//constructeur 
-	public IA(){
+	public IA(Bear bear){
 		etat= new Etat();
-		/*IA ia=new IA();*/
-		
+		deplacement=null;
+		zombie = bear;
 	}
 	
-	public int/*Action*/ getAction(){
-		if(action==0){
+	public Deplacer getAction(){
+		if(deplacement==null /*|| deplacement.finished()*/){
 			//envoyer une nouvelle action
 			
 			//test l'état de sommeil
-			dormir();
+			if(dormir())
+				return deplacement;
 			
 			//test l'état de faim
-			faim();
+			if(faim())
+				return deplacement;
 			
 			//test l'état de bonheur/jouer
-			jouer();
+			if(jouer())
+				return deplacement;
 			
+			deplacement = new Deplacer(zombie,0.1f);
 		}
-		else{
-			//continuer l'action en cours
-			
-		}
-		return action;
+		return deplacement;
 	}
 	
 	
 	//methode pour dormir
-	public void dormir(){
+	public boolean dormir(){
 		if(etat.getNiveauJauge(etat.sommeil)<=30){
-			//action = "va dormir"
+
+			deplacement = new Deplacer(zombie,0.01f);
+			return true;
+		}
+		else{
+			return false;
 		}
 	}	
 	
 		
 	//methode pour manger
-		public void faim(){
+		public boolean faim(){
 			if(etat.getNiveauJauge(etat.faim)<=30){
-				//action = "va manger"
+				deplacement = new Deplacer(zombie,0.5f);
+				return true;
+			}
+			else if(etat.getNiveauJauge(etat.faim)<=60){
+				deplacement = new Deplacer(zombie,1f);
+				return true;
+			}
+			else{
+				return false;
 			}
 		}	
 
 	//methode pour jouer
-		public void jouer(){
-			if(etat.getNiveauJauge(etat.bonheur)<=30){
-				//action = "va jouer"
+		public boolean jouer(){
+			if(etat.getNiveauJauge(etat.bonheur)>=60){
+				deplacement = new Deplacer(zombie,10f);
+				return true;
+			}
+			else{
+				return false;
 			}
 		}	
 	
