@@ -6,7 +6,13 @@ import android.util.Log;
 
 public class Etat {
 
-	private Jauge faim, sommeil, bonheur, zombification;
+	public Jauge faim;
+
+	public Jauge sommeil;
+
+	public Jauge bonheur;
+
+	private Jauge zombification;
 	
 	private Boolean malade;
 	private Boolean endormi;
