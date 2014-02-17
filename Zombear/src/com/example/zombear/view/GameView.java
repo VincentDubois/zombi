@@ -14,7 +14,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
-
+// moteur du jeu....
 
 public class GameView extends SurfaceView implements Callback {
 
@@ -43,7 +43,7 @@ public class GameView extends SurfaceView implements Callback {
 	};
 	
 	RefreshHandler handler = new RefreshHandler(this);
-	public static final int DELAY = 30; // ms
+	public static final int DELAY = 10; // ms
 
 	
 	private Rect rect;
