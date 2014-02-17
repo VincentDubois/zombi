@@ -8,25 +8,53 @@ public class IA {
 	//constructeur 
 	public IA(){
 		etat= new Etat();
-		IA ia=new IA();
-		//etat.initialiser();
+		/*IA ia=new IA();*/
 		
 	}
 	
 	public int/*Action*/ getAction(){
+		if(action==0){
+			//envoyer une nouvelle action
+			
+			//test l'état de sommeil
+			dormir();
+			
+			//test l'état de faim
+			faim();
+			
+			//test l'état de bonheur/jouer
+			jouer();
+			
+		}
+		else{
+			//continuer l'action en cours
+			
+		}
 		return action;
 	}
 	
-	/*
+	
 	//methode pour dormir
 	public void dormir(){
-		if(etat.sommeil.niveau<=30){
-			//appeler l'action "vadormir"
+		if(etat.getNiveauJauge(etat.sommeil)<=30){
+			//action = "va dormir"
 		}
 	}	
-	*/
-		
 	
+		
+	//methode pour manger
+		public void faim(){
+			if(etat.getNiveauJauge(etat.faim)<=30){
+				//action = "va manger"
+			}
+		}	
+
+	//methode pour jouer
+		public void jouer(){
+			if(etat.getNiveauJauge(etat.bonheur)<=30){
+				//action = "va jouer"
+			}
+		}	
 	
 		
 	}
