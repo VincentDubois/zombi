@@ -36,11 +36,12 @@ public class Etat {
 	}
 	
 	public void update(){
-		long tempsEcoule = new Date().getTime() - lastUpdate;
+		long time = new Date().getTime();
+		long tempsEcoule = time - lastUpdate;
 		diminuerNiveauJauge(faim, lastUpdate/60000);
 		diminuerNiveauJauge(sommeil, lastUpdate/120000);
 		
-		lastUpdate = new Date().getTime();
+		lastUpdate = time;
 	}
 
 }
