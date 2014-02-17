@@ -12,13 +12,15 @@ import android.os.Bundle;
 
 import com.example.zombear.R;
 import com.example.zombear.logic.IA;
+import com.example.zombear.utils.SpriteSheet;
 
 public class Bear {
 
 	//private float SPEED = 0.1f;
 	private float G = 0.005f;
-	
-	private Bitmap bmp;
+	private float PROPORTION_YC = 0.75f; //entre 0 et 1
+//	private Bitmap bmp;
+	private SpriteSheet sprite;
 	private Paint paintBlack = new Paint();
 
 	public PointF posF,posS;
@@ -36,7 +38,8 @@ public class Bear {
 	boolean hasTarget;
 
 	public Bear(Context context){
-		bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.zombear_sprite);
+		//bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.zombear_sprite);
+		sprite = new SpriteSheet(context, R.drawable.foxy_sprite,2,2);
 		paintBlack.setColor(0x77000000);
 		
 		posF = new PointF(0.5f,0.5f);
@@ -59,7 +62,8 @@ public class Bear {
 	}
 	
 	public Bear(Context context, Bundle b){
-		bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.zombear_sprite);
+		//bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.zombear_sprite);
+		sprite = new SpriteSheet(context, R.drawable.foxy_sprite,2,2);
 		paintBlack.setColor(0x77000000);
 		
 		posF = new PointF(0.5f,0.5f);
@@ -84,11 +88,12 @@ public class Bear {
 
 	public void paint(Canvas canvas) {
 //		float yp = off(y);
-		float s =(float) (Background.scale(posS.y)*canvas.getHeight()*0.4);
+		float s =(float) (Background.scale(posS.y)*canvas.getHeight()*0.8);
 		float xc = posS.x*canvas.getWidth(); //*floorToScreen(x,yp);
 		float yc = (posS.y-z*Background.scale(posS.y))*canvas.getHeight(); //*yp;
-		canvas.drawBitmap(bmp,null, new RectF(
-				xc-s, yc-2*s,xc+s,yc)
+		//PARAMETRE : SPRITE(ID) rectF(-x,-y,+x,+y)
+		canvas.drawBitmap(sprite.getBitmap(0),null, new RectF(
+				xc-s, yc-2*PROPORTION_YC*s,xc+s,yc+(2*s-2*s*PROPORTION_YC))
 		, null);
 		
 		if (hasTarget)
