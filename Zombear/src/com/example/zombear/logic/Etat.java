@@ -2,6 +2,8 @@ package com.example.zombear.logic;
 
 import java.util.Date;
 
+import android.util.Log;
+
 public class Etat {
 
 	private Jauge faim, sommeil, bonheur, zombification;
@@ -12,7 +14,10 @@ public class Etat {
 	private long lastUpdate;
 	
 	public Etat(){
+		Log.d("Zomb", "Initialisation");
 		initialiser();
+		Log.d("Zomb", "Update");
+		update();
 	}
 	
 	public void initialiser(){
@@ -36,6 +41,7 @@ public class Etat {
 	}
 	
 	public void update(){
+		Log.d("update", faim.getNiveau()+" "+sommeil.getNiveau());
 		long time = new Date().getTime();
 		long tempsEcoule = time - lastUpdate;
 		diminuerNiveauJauge(faim, lastUpdate/60000);
