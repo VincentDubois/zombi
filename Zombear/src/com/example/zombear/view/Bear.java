@@ -77,7 +77,7 @@ public class Bear {
 
 		//initialisation du champ (instancier deplacer)
 		// -------------------------------------------
-		deplace = new Deplacer(this,1);
+		deplace = new Deplacer(this,1,true,targetF);
 
 	}
 
