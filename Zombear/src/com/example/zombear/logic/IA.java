@@ -4,6 +4,7 @@ import android.graphics.PointF;
 
 import com.example.zombear.view.Bear;
 import com.example.zombear.view.Deplacer;
+import android.os.Bundle;
 
 public class IA {
 	
@@ -20,6 +21,12 @@ public class IA {
 		etat= new Etat();
 		deplacement=null;
 		zombie = bear;
+		/*IA ia=new IA();*/
+	}
+	
+	public IA(Bundle b){
+		etat= new Etat(b);
+		/*IA ia=new IA();*/
 	}
 	
 	public Deplacer getAction(PointF cible){
@@ -98,6 +105,9 @@ public class IA {
 			}
 		}	
 	
+		public Bundle getSaveBundle(){
+			return etat.getSaveBundle();
+		}
 		
 	}
 

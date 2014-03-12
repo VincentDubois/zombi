@@ -29,10 +29,10 @@ public class Background {
 	// d = d0*(1-y)/(y-yf);
 	
 	public final static float 
-		xf = 0.6f,
+		xf = 0.66f,
 		yf = 0.5f,
-		y_min = 0.65f,
-		d0 = 0.5f;
+		y_min = 0.6f,
+		d0 = 0.2f;
 	
 	public static final int FOOD = 0;
 	public static final int BED = 1;
@@ -53,7 +53,7 @@ public class Background {
 	}
 
 	public static float scale(float y){
-		return (y-yf)/(1-yf);
+		return (y-yf)/(1+d0-yf);
 	}
 	
 	public static void toScreen(PointF floor, PointF screen){
@@ -67,7 +67,7 @@ public class Background {
 	}
 
 	Background(Context context){	
-		background =  BitmapFactory.decodeResource(context.getResources(), R.drawable.cottage);
+		background =  BitmapFactory.decodeResource(context.getResources(), R.drawable.foxy_zombie_background);
 	}
 	
 	public void paint(Canvas canvas, Rect rect){
