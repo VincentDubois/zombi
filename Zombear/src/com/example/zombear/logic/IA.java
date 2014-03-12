@@ -4,7 +4,10 @@ import android.graphics.PointF;
 
 import com.example.zombear.view.Bear;
 import com.example.zombear.view.Deplacer;
+import com.example.zombear.view.Wait;
+
 import android.os.Bundle;
+import android.util.Log;
 
 public class IA {
 	
@@ -30,7 +33,10 @@ public class IA {
 	}
 	
 	public Deplacer getAction(PointF cible){
+//		Log.d("IA.getAction()", "début");
+
 		if(deplacement==null || deplacement.fini){
+			Log.d("IA.getAction()", "nouveau");
 			//envoyer une nouvelle action
 			
 			target=cible;
@@ -47,16 +53,20 @@ public class IA {
 //			if(jouer())
 //				return deplacement;
 			if(Math.random()<=0.3){
-				deplacement = new Deplacer(zombie,0.05f,true,coordonneeDormir);
+				deplacement = new Wait(zombie,0.05f,false,coordonneeDormir,100);
+
+			}
+			else if(Math.random()<=0.3){
+				deplacement = new Wait(zombie,0.05f,true,coordonneeDormir,100);
 
 			}
 			
-			else if(Math.random()>=0.6){
-				deplacement = new Deplacer(zombie,0.15f,true,coordonneeFaim);
+			else if(Math.random()>=0.5){
+				deplacement = new Deplacer(zombie,0.40f,true,coordonneeFaim);
 
 			}
 			else{
-				deplacement = new Deplacer(zombie,0.1f,true,target);
+				deplacement = new Deplacer(zombie,0.1f,false,target);
 			}
 		}
 		

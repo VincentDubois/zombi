@@ -37,14 +37,19 @@ public class Deplacer {
 	public float dist(PointF from, PointF to){
 		return PointF.length(to.x-from.x, to.y-from.y);
 	}
+	
+	
+	public int getIndex(){
+		return 0;
+	}
+	
 
 	
 	public void move() { //mettre en champ float speed
-		if (bear.hasTarget){  //--------------------------------
+		if (!fini){  //--------------------------------
 			float d = dist(target,bear.posF);
 			if (dist(target,bear.posF) < speed) {
 				bear.posF.set(target);
-				bear.hasTarget = false;
 				fini = true; //arrivé a dst...
 			} else {
 				bear.posF.offset((target.x-bear.posF.x)/d*speed,
@@ -54,7 +59,6 @@ public class Deplacer {
 		}
 		if (jump==true && bear.canJump()){
 			bear.jump();
-			jump=false;
 		}
 	}
 }
