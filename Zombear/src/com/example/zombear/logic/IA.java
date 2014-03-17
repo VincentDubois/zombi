@@ -29,8 +29,11 @@ public class IA {
 		attente = null;
 	}
 	
-	public IA(Bundle b){
-		etat= new Etat(b);
+	public IA(Bear bear, Bundle bundle){
+		etat= new Etat(bundle);
+		deplacement=null;
+		zombie = bear;
+		/*IA ia=new IA();*/
 	}
 	
 	public Action getAction(PointF cible){
