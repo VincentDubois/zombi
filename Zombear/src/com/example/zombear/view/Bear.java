@@ -78,7 +78,7 @@ public class Bear {
 		hasTarget = false;
 
 		// instance ia
-		ia = new IA(b);
+		ia = new IA(this, b);
 
 		//initialisation du champ (instancier deplacer)
 		// -------------------------------------------
