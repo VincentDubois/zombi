@@ -21,27 +21,26 @@ public class MainActivity extends Activity {
 		
 		Float faim = myPrefs.getFloat("faim", 50f);
 		Float sommeil = myPrefs.getFloat("sommeil", 50f);
+		Float ennui = myPrefs.getFloat("ennui", 50f);
 		Long lastUpdate = myPrefs.getLong("lastUpdate", 0);
 		
 		Bundle b = new Bundle();
 		b.putDouble("faim", (double) faim);
 		b.putDouble("sommeil", (double) sommeil);
+		b.putDouble("ennui", (double) ennui);
 		b.putLong("lastUpdate", lastUpdate);
 		
 		setContentView(R.layout.activity_main);
 		
 		if(savedInstanceState == null){
 			if(lastUpdate != 0){
-				Log.d("lancement", "1");
 				bear = new Bear(this, b);
 			}
 			else{
-				Log.d("lancement", "2");
 				bear = new Bear(this);
 			}
 		}
 		else{
-			Log.d("lancement", "3");
 			bear = new Bear(this, savedInstanceState.getBundle("bear"));
 		}
 		((GameView) findViewById(R.id.gameView1)).setBear(bear);
@@ -75,6 +74,7 @@ public class MainActivity extends Activity {
 		SharedPreferences.Editor ed = myPrefs.edit();
 		ed.putFloat("faim", (float) b.getDouble("faim"));
 		ed.putFloat("sommeil", (float) b.getDouble("sommeil"));
+		ed.putFloat("ennui", (float) b.getDouble("ennui"));
 		ed.putLong("lastUpdate", b.getLong("lastUpdate"));
 		ed.commit();
 	}

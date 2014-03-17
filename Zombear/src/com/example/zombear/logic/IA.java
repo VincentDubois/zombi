@@ -98,7 +98,7 @@ public class IA {
 
 	//methode pour jouer
 		public boolean jouer(){
-			if(etat.getNiveauJauge(etat.bonheur)>=60){
+			if(etat.getNiveauJauge(etat.ennui)<=60){
 				deplacement = new Deplacer(zombie,10f,true,target);
 				return true;
 			}
