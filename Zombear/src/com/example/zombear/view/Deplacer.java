@@ -9,7 +9,7 @@ public class Deplacer {
 	public float SPEED = 0.1f;
 
 	
- // champ bear
+	// champ bear
 	public Bear bear;
 	public float speed;
 	// jump
@@ -17,7 +17,6 @@ public class Deplacer {
 	
 	// target 
 	public PointF target;
-	// 
 	
 	//boolean fini
 	public boolean fini;
