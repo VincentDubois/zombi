@@ -32,7 +32,7 @@ public class Bear {
 	private IA ia;
 	
 	//ajout d'un champ de type Deplacer
-	public Deplacer deplace;
+	public Action deplace;
 	
 	
 	boolean hasTarget;
