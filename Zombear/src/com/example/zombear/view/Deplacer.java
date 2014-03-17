@@ -3,7 +3,7 @@ package com.example.zombear.view;
 import android.graphics.PointF;
 
 
-public class Deplacer {
+public class Deplacer implements Action {
 
 
 	public float SPEED = 0.1f;
@@ -20,7 +20,10 @@ public class Deplacer {
 	// 
 	
 	//boolean fini
-	public boolean fini;
+	protected boolean fini;
+	
+	//mouvement suivant
+	public Action mouvementSuivant;
 	
 	
 	
@@ -30,7 +33,12 @@ public class Deplacer {
 		this.speed = speed*SPEED;
 		this.jump = jump;
 		this.target = target;
-		this.fini = false;
+		fini =false;
+	}
+	
+	public Deplacer(Bear bear,float speed, boolean jump, PointF target, Action mouvementSuivant) {
+		this(bear, speed, jump, target);
+		this.mouvementSuivant = mouvementSuivant;
 	}
 
 
@@ -39,12 +47,20 @@ public class Deplacer {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see com.example.zombear.view.Action#getIndex()
+	 */
+	@Override
 	public int getIndex(){
 		return 0;
 	}
 	
 
 	
+	/* (non-Javadoc)
+	 * @see com.example.zombear.view.Action#move()
+	 */
+	@Override
 	public void move() { //mettre en champ float speed
 		if (!fini){  //--------------------------------
 			float d = dist(target,bear.posF);
@@ -61,4 +77,16 @@ public class Deplacer {
 			bear.jump();
 		}
 	}
+
+
+	/* (non-Javadoc)
+	 * @see com.example.zombear.view.Action#isFini()
+	 */
+	@Override
+	public boolean isFini() {
+		return fini && (mouvementSuivant == null || mouvementSuivant.isFini() );
+	}
+
+
+
 }
