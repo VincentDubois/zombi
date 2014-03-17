@@ -2,6 +2,7 @@ package com.example.zombear.logic;
 
 import android.graphics.PointF;
 
+import com.example.zombear.view.Action;
 import com.example.zombear.view.Bear;
 import com.example.zombear.view.Deplacer;
 import com.example.zombear.view.Wait;
@@ -12,9 +13,10 @@ import android.util.Log;
 public class IA {
 	
 	public Etat etat;
-	public Deplacer deplacement;
+	public Action deplacement;
 	public Bear zombie;
 	public PointF target;
+	public Wait attente;
 	
 	private PointF coordonneeDormir = new PointF(0,1);
 	private PointF coordonneeFaim = new PointF(0,0);
@@ -24,7 +26,7 @@ public class IA {
 		etat= new Etat();
 		deplacement=null;
 		zombie = bear;
-		/*IA ia=new IA();*/
+		attente = null;
 	}
 	
 	public IA(Bear bear, Bundle bundle){
@@ -34,48 +36,36 @@ public class IA {
 		/*IA ia=new IA();*/
 	}
 	
-	public Deplacer getAction(PointF cible){
+	public Action getAction(PointF cible){
 //		Log.d("IA.getAction()", "début");
 
-		if(deplacement==null || deplacement.fini){
-			Log.d("IA.getAction()", "nouveau");
+		
+		
+		
+		if(deplacement==null || deplacement.isFini()){
+			etat.update();
+			Log.d("IA.getAction()",""+etat.getNiveauJauge(etat.sommeil));
 			//envoyer une nouvelle action
 			
 			target=cible;
 			
-//			//test l'état de sommeil
-//			if(dormir())
-//				return deplacement;
-//			
-//			//test l'état de faim
-//			if(faim())
-//				return deplacement;
-//			
-//			//test l'état de bonheur/jouer
-//			if(jouer())
-//				return deplacement;
-			if(Math.random()<=0.3){
-				deplacement = new Wait(zombie,0.05f,false,coordonneeDormir,100);
-
-			}
-			else if(Math.random()<=0.3){
-				deplacement = new Wait(zombie,0.05f,true,coordonneeDormir,100);
-
+			if(etat.getNiveauJauge(etat.sommeil)<=48){
+				if(Math.random()<=0.01){
+					return deplacement = new Deplacer(zombie,0.15f,true,coordonneeFaim);
+				}
+				else
+					deplacement = new Deplacer(zombie,0.1f,false,target);
 			}
 			
-			else if(Math.random()>=0.5){
-				deplacement = new Deplacer(zombie,0.40f,true,coordonneeFaim);
-
-			}
-			else{
-				deplacement = new Deplacer(zombie,0.1f,false,target);
-			}
+			
+			deplacement = new Deplacer(zombie,0.1f,false,target);
+			
 		}
 		
 		return deplacement;
 	}
 	
-	
+	/*
 	//methode pour dormir
 	public boolean dormir(){
 		if(etat.getNiveauJauge(etat.sommeil)<=60){
@@ -116,7 +106,7 @@ public class IA {
 				return false;
 			}
 		}	
-	
+	*/
 		public Bundle getSaveBundle(){
 			return etat.getSaveBundle();
 		}

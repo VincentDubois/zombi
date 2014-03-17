@@ -19,7 +19,7 @@ public class Wait extends Deplacer {
 			cpt--;
 		}
 		else{
-			fini = true;
+			fini =true;
 		}
 		if (jump==true && bear.canJump()){
 			bear.jump();
