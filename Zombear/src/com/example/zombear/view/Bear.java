@@ -53,11 +53,12 @@ public class Bear {
 		hasTarget = false;
 
 		// instance ia
-		ia = new IA();
+		ia = new IA(this);
 
 		//initialisation du champ (instancier deplacer)
 		// -------------------------------------------
-		deplace = new Deplacer(this,1,true,targetF);
+		deplace = null;//new Deplacer(this,1,true,targetF);
+		setTarget(1f,0.5f);
 
 	}
 	
@@ -77,7 +78,7 @@ public class Bear {
 		hasTarget = false;
 
 		// instance ia
-		ia = new IA(b);
+		ia = new IA(this, b);
 
 		//initialisation du champ (instancier deplacer)
 		// -------------------------------------------
@@ -110,8 +111,8 @@ public class Bear {
 	public void act() {
 
 		//récupérer l'action en cours
-		ia.getAction();
-		 deplace.move();// remplacer par l'appel à la méthode move du champ
+		 deplace =ia.getAction(targetF);
+		deplace.move();// remplacer par l'appel à la méthode move du champ
 		
 
 		

@@ -1,22 +1,51 @@
 package com.example.zombear;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+
 import com.example.zombear.view.Bear;
 import com.example.zombear.view.GameView;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 
 public class MainActivity extends Activity {
 	
 	Bear bear;
+	private SharedPreferences myPrefs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		myPrefs = this.getSharedPreferences("myPrefs", MODE_WORLD_READABLE);
+		
+		Float faim = myPrefs.getFloat("faim", 50f);
+		Float sommeil = myPrefs.getFloat("sommeil", 50f);
+		Long lastUpdate = myPrefs.getLong("lastUpdate", 0);
+		
+		Bundle b = new Bundle();
+		b.putDouble("faim", (double) faim);
+		b.putDouble("sommeil", (double) sommeil);
+		b.putLong("lastUpdate", lastUpdate);
+		
 		setContentView(R.layout.activity_main);
-		bear = new Bear(this);
+		
+		if(savedInstanceState == null){
+			if(lastUpdate != 0){
+				Log.d("lancement", "1");
+				bear = new Bear(this, b);
+			}
+			else{
+				Log.d("lancement", "2");
+				bear = new Bear(this);
+			}
+		}
+		else{
+			Log.d("lancement", "3");
+			bear = new Bear(this, savedInstanceState.getBundle("bear"));
+		}
 		((GameView) findViewById(R.id.gameView1)).setBear(bear);
+		
 	}
 
 	@Override
@@ -28,9 +57,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		bear = new Bear(this, savedInstanceState.getBundle("bear"));
-		((GameView) findViewById(R.id.gameView1)).setBear(bear);
-		super.onRestoreInstanceState(savedInstanceState);
+		super.onRestoreInstanceState(savedInstanceState); 
 	}
 
 	@Override
@@ -39,6 +66,18 @@ public class MainActivity extends Activity {
 		super.onSaveInstanceState(outState);
 	}
 	
+	@Override
+	protected void onPause(){
+		super.onPause();
+		
+		Bundle b = bear.getSaveBundle();
+		
+		SharedPreferences.Editor ed = myPrefs.edit();
+		ed.putFloat("faim", (float) b.getDouble("faim"));
+		ed.putFloat("sommeil", (float) b.getDouble("sommeil"));
+		ed.putLong("lastUpdate", b.getLong("lastUpdate"));
+		ed.commit();
+	}
 	
 
 }

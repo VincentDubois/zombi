@@ -38,6 +38,7 @@ public class Etat {
 		bonheur = new Jauge();
 		zombification = new Jauge();
 		lastUpdate = b.getLong("lastUpdate");
+		update();
 	}
 	
 	public int getNiveauJauge(Jauge j){
