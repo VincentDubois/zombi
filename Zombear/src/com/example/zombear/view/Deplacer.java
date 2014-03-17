@@ -1,5 +1,9 @@
 package com.example.zombear.view;
 
+
+import com.example.zombear.MainActivity;
+import com.example.zombear.R;
+
 import android.graphics.PointF;
 
 
@@ -46,6 +50,7 @@ public class Deplacer {
 
 	
 	public void move() { //mettre en champ float speed
+		MainActivity.playSound(R.raw.dead);
 		if (!fini){  //--------------------------------
 			float d = dist(target,bear.posF);
 			if (dist(target,bear.posF) < speed) {

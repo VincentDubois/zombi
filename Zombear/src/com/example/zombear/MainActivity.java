@@ -2,6 +2,7 @@ package com.example.zombear;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -46,6 +47,8 @@ public class MainActivity extends Activity {
 		}
 		((GameView) findViewById(R.id.gameView1)).setBear(bear);
 		
+		activity =this;
+		
 	}
 
 	@Override
@@ -79,5 +82,27 @@ public class MainActivity extends Activity {
 		ed.commit();
 	}
 	
-
+    private MediaPlayer mPlayer = null;
+    private static MainActivity activity;
+    
+    public void stopSound() {
+        super.onPause();
+        if(mPlayer != null) {
+            mPlayer.stop();
+            mPlayer.release();
+        }
+    }
+    
+    public static void playSound(int resId) {
+    	if (activity == null) return;
+    	
+    	
+        if(activity.mPlayer != null) {
+        	activity.mPlayer.stop();
+        	activity.mPlayer.release();
+        }
+        activity.mPlayer = MediaPlayer.create(activity, resId);
+        activity.mPlayer.start();
+    }
 }
+	
