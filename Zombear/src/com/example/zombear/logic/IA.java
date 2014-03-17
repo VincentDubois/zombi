@@ -27,8 +27,10 @@ public class IA {
 		/*IA ia=new IA();*/
 	}
 	
-	public IA(Bundle b){
-		etat= new Etat(b);
+	public IA(Bear bear, Bundle bundle){
+		etat= new Etat(bundle);
+		deplacement=null;
+		zombie = bear;
 		/*IA ia=new IA();*/
 	}
 	
