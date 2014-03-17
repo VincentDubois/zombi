@@ -3,7 +3,7 @@ package com.example.zombear.view;
 import android.graphics.PointF;
 
 
-public class Deplacer {
+public class Deplacer implements Action {
 
 
 	public float SPEED = 0.1f;
@@ -19,7 +19,10 @@ public class Deplacer {
 	public PointF target;
 	
 	//boolean fini
-	public boolean fini;
+	protected boolean fini;
+	
+	//mouvement suivant
+	public Action mouvementSuivant;
 	
 	
 	
@@ -29,21 +32,39 @@ public class Deplacer {
 		this.speed = speed*SPEED;
 		this.jump = jump;
 		this.target = target;
-		this.fini = false;
+		fini =false;
+	}
+	
+	public Deplacer(Bear bear,float speed, boolean jump, PointF target, Action mouvementSuivant) {
+		this(bear, speed, jump, target);
+		this.mouvementSuivant = mouvementSuivant;
 	}
 
 
 	public float dist(PointF from, PointF to){
 		return PointF.length(to.x-from.x, to.y-from.y);
 	}
+	
+	
+	/* (non-Javadoc)
+	 * @see com.example.zombear.view.Action#getIndex()
+	 */
+	@Override
+	public int getIndex(){
+		return 0;
+	}
+	
 
 	
+	/* (non-Javadoc)
+	 * @see com.example.zombear.view.Action#move()
+	 */
+	@Override
 	public void move() { //mettre en champ float speed
-		if (bear.hasTarget){  //--------------------------------
+		if (!fini){  //--------------------------------
 			float d = dist(target,bear.posF);
 			if (dist(target,bear.posF) < speed) {
 				bear.posF.set(target);
-				bear.hasTarget = false;
 				fini = true; //arrivé a dst...
 			} else {
 				bear.posF.offset((target.x-bear.posF.x)/d*speed,
@@ -53,7 +74,18 @@ public class Deplacer {
 		}
 		if (jump==true && bear.canJump()){
 			bear.jump();
-			jump=false;
 		}
 	}
+
+
+	/* (non-Javadoc)
+	 * @see com.example.zombear.view.Action#isFini()
+	 */
+	@Override
+	public boolean isFini() {
+		return fini && (mouvementSuivant == null || mouvementSuivant.isFini() );
+	}
+
+
+
 }

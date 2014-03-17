@@ -14,8 +14,8 @@ public class Background {
 	private Bitmap background;
 	
 	
-	//                          |
-	//                          |
+	//                          |      .   .
+	//                          |        u
 	//yf                        |
 	//       /\           .     |
 	//      /  \            .   |
