@@ -1,18 +1,15 @@
-package com.example.zombear.view;
+package fr.univartois.iutlens.zombfox.view;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Bundle;
-
-import com.example.zombear.R;
-import com.example.zombear.logic.IA;
-import com.example.zombear.utils.SpriteSheet;
+import fr.univartois.iutlens.zombfox.R;
+import fr.univartois.iutlens.zombfox.logic.IA;
+import fr.univartois.iutlens.zombfox.utils.SpriteSheet;
 
 public class Bear {
 
@@ -29,7 +26,7 @@ public class Bear {
 	private float z,vz;
 	
 	// champ IA
-	private IA ia;
+	public IA ia;
 	
 	//ajout d'un champ de type Deplacer
 	public Action deplace;

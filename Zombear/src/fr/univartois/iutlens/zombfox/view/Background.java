@@ -1,7 +1,4 @@
-package com.example.zombear.view;
-
-import com.example.zombear.R;
-import com.example.zombear.R.drawable;
+package fr.univartois.iutlens.zombfox.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.graphics.Rect;
+import fr.univartois.iutlens.zombfox.R;
 
 public class Background {
 	private Bitmap background;

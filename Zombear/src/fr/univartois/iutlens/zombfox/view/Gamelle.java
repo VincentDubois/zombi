@@ -1,8 +1,7 @@
-package com.example.zombear.view;
+package fr.univartois.iutlens.zombfox.view;
 
 import android.graphics.PointF;
-
-import com.example.zombear.utils.SpriteSheet;
+import fr.univartois.iutlens.zombfox.utils.SpriteSheet;
 
 public class Gamelle extends Item{
 	public Gamelle(boolean dispo, int etat, int position_sprite,

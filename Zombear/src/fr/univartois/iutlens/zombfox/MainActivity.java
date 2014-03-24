@@ -1,4 +1,4 @@
-package com.example.zombear;
+package fr.univartois.iutlens.zombfox;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,13 +7,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.example.zombear.view.Bear;
-import com.example.zombear.view.GameView;
+import fr.univartois.iutlens.zombfox.view.Bear;
+import fr.univartois.iutlens.zombfox.view.GameView;
 
 public class MainActivity extends Activity {
 	

@@ -1,4 +1,4 @@
-package com.example.zombear;
+package fr.univartois.iutlens.zombfox;
 
 
 

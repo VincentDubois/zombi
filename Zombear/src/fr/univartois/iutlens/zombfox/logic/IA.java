@@ -1,14 +1,15 @@
-package com.example.zombear.logic;
+package fr.univartois.iutlens.zombfox.logic;
 
 import android.graphics.PointF;
-
-import com.example.zombear.view.Action;
-import com.example.zombear.view.Bear;
-import com.example.zombear.view.Deplacer;
-import com.example.zombear.view.Wait;
-
 import android.os.Bundle;
 import android.util.Log;
+import fr.univartois.iutlens.zombfox.view.Action;
+import fr.univartois.iutlens.zombfox.view.Bear;
+import fr.univartois.iutlens.zombfox.view.Deplacer;
+import fr.univartois.iutlens.zombfox.view.Dormir;
+import fr.univartois.iutlens.zombfox.view.Jouer;
+import fr.univartois.iutlens.zombfox.view.Manger;
+import fr.univartois.iutlens.zombfox.view.Wait;
 
 public class IA {
 	
@@ -39,11 +40,20 @@ public class IA {
 	
 	public Action getAction(PointF cible){
 //		Log.d("IA.getAction()", "début");
-
-		
-		//Les actions qui peuvent interrompre les autres
-		//if()
-		
+/*
+		if(etat.faim.getNiveau() < 20){
+			Log.d("jauge", "JE VAIS MANGER !");
+			deplacement = new Manger(zombie);
+		}
+		if(etat.sommeil.getNiveau() < 20){
+			Log.d("jauge", "JE VAIS DORMIR !");
+			deplacement = new Dormir(zombie);
+		}
+		if(etat.ennui.getNiveau() > 80){
+			Log.d("jauge", "JE VAIS JOUER !");
+			deplacement = new Jouer(zombie);
+		}
+*/		
 		
 		if(deplacement==null || deplacement.isFini()){
 			etat.update();

@@ -1,4 +1,4 @@
-package com.example.zombear.view;
+package fr.univartois.iutlens.zombfox.view;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -11,14 +11,12 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-
-import com.example.zombear.R;
-import com.example.zombear.utils.SpriteSheet;
+import fr.univartois.iutlens.zombfox.R;
+import fr.univartois.iutlens.zombfox.utils.SpriteSheet;
 
 
 
@@ -78,7 +76,7 @@ public class GameView extends SurfaceView implements Callback {
 		background = new Background(context);
 		getHolder().addCallback(this);
 		
-		//Objet dans la scène
+		//Objet dans la scÔøΩne
 		//Gamelle
 		SpriteSheet spriteGamelle = new SpriteSheet(context, R.drawable.gamelle,1,1);
 		PointF itemPosSGamelle = new PointF(0.5f,0.6f);

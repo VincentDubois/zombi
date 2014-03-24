@@ -1,6 +1,6 @@
-package com.example.zombear.view;
+package fr.univartois.iutlens.zombfox.view;
 
-import com.example.zombear.view.GameView.RefreshHandler;
+import fr.univartois.iutlens.zombfox.view.GameView.RefreshHandler;
 
 import android.graphics.PointF;
 import android.os.Handler;

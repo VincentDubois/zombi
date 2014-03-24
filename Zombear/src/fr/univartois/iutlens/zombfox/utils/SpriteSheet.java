@@ -1,4 +1,4 @@
-package com.example.zombear.utils;
+package fr.univartois.iutlens.zombfox.utils;
 
 import java.util.HashMap;
 import java.util.Map;

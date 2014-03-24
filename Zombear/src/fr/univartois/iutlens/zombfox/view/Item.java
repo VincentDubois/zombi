@@ -1,6 +1,6 @@
-package com.example.zombear.view;
+package fr.univartois.iutlens.zombfox.view;
 
-import com.example.zombear.utils.SpriteSheet;
+import fr.univartois.iutlens.zombfox.utils.SpriteSheet;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,7 +16,7 @@ public class Item {
 	/**
 	 * @param args
 	 */
-	private boolean dispo; //DisponnibilitŽ en fonction des jauges
+	private boolean dispo; //Disponnibilitï¿½ en fonction des jauges
 	private  int etat; //Etat visuel de l'objet (ex : plein/vide...)
 	private int position_sprite; //Numero du sprite
 	

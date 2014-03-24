@@ -1,16 +1,15 @@
-package com.example.zombear.view;
+package fr.univartois.iutlens.zombfox.view;
 
-
-import com.example.zombear.MainActivity;
-import com.example.zombear.R;
 
 import android.graphics.PointF;
+import fr.univartois.iutlens.zombfox.MainActivity;
+import fr.univartois.iutlens.zombfox.R;
 
 
 public class Deplacer implements Action {
 
 
-	public float SPEED = 0.1f;
+	public float SPEED = 1f;
 
 	
 	// champ bear
