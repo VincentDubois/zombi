@@ -1,8 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent" 
+    android:orientation="vertical"
+    android:background="#000000" >
 
-</LinearLayout>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollbarStyle="insideOverlay" >
+
+        
+        
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1"
+            android:background="#000000"
+            android:gravity="center"
+            android:scrollbars="vertical"
+            android:text="Créateurs de l&apos;application:\n\nFanny Bardoux\nHugo Butel\nRémi Cousin\nMaxime Defenin\nAdrien Furnari\nMohamed Hammouch\nBoris Kopras\nYann Kubacki\nCyndie Lim\nClément Pilate\nHugo Poiret\nClément Vering\n\n Avec la participation de Vincent Dubois\n\n\nZombfox\nApplication réalisée par le groupe Web1\nIUT Lens\n2014\n@Copyright" 
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+        
+            
+             />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+        
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:src="@drawable/gamelle_pleine" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:src="@drawable/zombear_sprite" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:layout_weight="1.00"
+            android:src="@drawable/os" />
+
+    </LinearLayout>
+ 
+    <Button
+        android:id="@+id/buttonpropos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:text="Revenir au jeu" />
+ 
+        </LinearLayout>
