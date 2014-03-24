@@ -3,6 +3,7 @@ package com.example.zombear;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.Gravity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.example.zombear.view.Bear;
 import com.example.zombear.view.GameView;
 
 public class MainActivity extends Activity {
+	
 	
 	Bear bear;
 	private SharedPreferences myPrefs;
@@ -34,7 +36,7 @@ public class MainActivity extends Activity {
 		b.putDouble("ennui", (double) ennui);
 		b.putLong("lastUpdate", lastUpdate);
 		
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main); 
 		new AlertDialog.Builder(this).setTitle("Zombear").setMessage(" Bienvenue dans l'univers Zombear, prenez bien soin de lui ! ").setNeutralButton("Entrez",null).show(); 
 		
 		
@@ -67,8 +69,8 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()){
 		
 		case R.id.action_settings:
-			new AlertDialog.Builder(this).setTitle("A propos").setMessage(" Application réalisée par le groupe Web 1  \n 2014").setNeutralButton("Fermer",null).show(); return true;
-			
+			Intent intent=new Intent(MainActivity.this, Apropos.class);
+			startActivity(intent);
 			default:
 				return super.onOptionsItemSelected(item);
 				
