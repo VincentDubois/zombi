@@ -23,7 +23,7 @@ public class Item {
 	
 	private float SPEED = 0.01f;
 	private float G = 0.005f;
-	private float PROPORTION_YC = 0.75f; //entre 0 et 1
+	private float PROPORTION_YC = 0.5f; //entre 0 et 1
 //	private Bitmap bmp;
 	private SpriteSheet sprite;
 	private Paint paintBlack = new Paint();
@@ -37,42 +37,50 @@ public class Item {
 	
 	
 	
-	public Item(boolean dispo, int etat, int position_sprite, SpriteSheet sprite) {
+	public Item(boolean dispo, int etat, int position_sprite, SpriteSheet sprite,
+			PointF posS) {
 		super();
 		this.dispo = dispo;
 		this.etat = etat;
 		this.position_sprite = position_sprite;
 		paintBlack.setColor(0x77000000);
-		this.posS = new PointF(0.5f,0.5f);
+		
 		this.sprite = sprite;
+		this.posS=posS;
 	}
 
 
 
 	//Methodes
-	public  boolean setDispo(){
+	public  boolean getDispo(){
 		return dispo;
 	}
-	public  void getDispo(boolean b){
+	public  void setDispo(boolean b){
 		dispo = b;
 	}
 	
-	public  int setEtat(){
+	public  int getEtat(){
 		return etat;
 	}
-	public  void getEtat(int e){
+	public  void setEtat(int e){
 		etat = e;
 	}	
 	
-	public int setPositionSprite(){
+	public int getPositionSprite(){
 		return position_sprite;
 	}
 	
-	public void getPositionSprite(int p){
+	public void setPositionSprite(int p){
 		position_sprite = p;
 	}
 	
+	public PointF getPosS(){
+		return posS;
+	}
 	
+	public void setPosS(PointF p){
+		posS = p;
+	}
 	
 	
 	
@@ -87,15 +95,15 @@ public class Item {
 	// TODO Auto-generated method stub
 		float s = canvas.getHeight()*0.1f;
 		float xc = posS.x*canvas.getWidth(); //*floorToScreen(x,yp);
-		float yc = posS.y*canvas.getHeight()+70; //*yp;
+		float yc = posS.y*canvas.getHeight(); //*yp;
 		//PARAMETRE : SPRITE(ID) rectF(-x,-y,+x,+y)
-		canvas.drawBitmap(sprite.getBitmap(0),null, new RectF(
+		canvas.drawBitmap(sprite.getBitmap(position_sprite),null, new RectF(
 				xc-s, yc-2*PROPORTION_YC*s,xc+s,yc+(2*s-2*s*PROPORTION_YC))
 		, null);
 		
 		
-			canvas.drawCircle(xc,
-					yc, 50, paintBlack );
+		/*	canvas.drawCircle(xc,
+					yc, 50, paintBlack );*/
 	}
 
 }

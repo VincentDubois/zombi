@@ -1,32 +1,35 @@
 package com.example.zombear.view;
 
 import java.lang.ref.WeakReference;
-
-import com.example.zombear.R;
-import com.example.zombear.utils.SpriteSheet;
+import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
+import com.example.zombear.R;
+import com.example.zombear.utils.SpriteSheet;
+
 
 
 public class GameView extends SurfaceView implements Callback {
-
+	private Item itemSelected;
 	private Bear bear;
 	private Background background;
 	
 	private boolean running;
 	
-	private Item item;
+
 	static class RefreshHandler extends Handler {
 		WeakReference<GameView> weak;
 		
@@ -51,6 +54,7 @@ public class GameView extends SurfaceView implements Callback {
 
 	
 	private Rect rect;
+	private ArrayList<Item> listItem;
 	
 
 	public GameView(Context context, AttributeSet attrs, int defStyle) {
@@ -72,8 +76,21 @@ public class GameView extends SurfaceView implements Callback {
 		running = false;
 		background = new Background(context);
 		getHolder().addCallback(this);
-		SpriteSheet sprite = new SpriteSheet(context, R.drawable.gamelle,1,1);
-		item = new Item(true, 0, 0, sprite);
+		
+		//Objet dans la scène
+		//Gamelle
+		SpriteSheet spriteGamelle = new SpriteSheet(context, R.drawable.gamelle,1,1);
+		PointF itemPosSGamelle = new PointF(0.5f,0.6f);
+		//Os
+		SpriteSheet spriteOs = new SpriteSheet(context, R.drawable.os,1,1);
+		PointF itemPosSOs = new PointF(0.8f,0.8f);
+		//Balle
+		SpriteSheet spriteBalle = new SpriteSheet(context, R.drawable.balle,1,1);
+		PointF itemPosSBalle = new PointF(0.1f,0.7f);
+		listItem = new ArrayList<Item>();
+		listItem.add(new Item(true, 0, 0, spriteBalle, itemPosSBalle));
+		listItem.add(new Item(true, 0, 0, spriteOs, itemPosSOs));
+		listItem.add(new Item(true, 0, 0, spriteGamelle, itemPosSGamelle));
 	}
 
 	public void setBear(Bear bear){
@@ -86,9 +103,10 @@ public class GameView extends SurfaceView implements Callback {
 		if (background != null){
 			background.paint(canvas,rect);
 		}
-		if (item != null)
-			item.paint( canvas);
-		if (bear != null)
+		
+		for(Item item : listItem){
+			item.paint(canvas);
+		}
 			bear.paint( canvas);
 	}
 
@@ -133,7 +151,33 @@ public class GameView extends SurfaceView implements Callback {
 				event.getAction() == MotionEvent.ACTION_MOVE){
 			bear.setTarget(event.getX()/getWidth(),event.getY()/getHeight());
 		}
+		if(event.getAction() == MotionEvent.ACTION_DOWN ){
+			itemSelected = getItem(event.getX()/getWidth(),event.getY()/getHeight());
+			
+		}
 		return true;
+	}
+
+	private Item getItem(float X, float Y) {
+		// TODO Auto-generated method stub
+		for(Item item : listItem ){
+		PointF currentPosItem	= item.getPosS();
+		if(dist2(currentPosItem,X,Y) <=0.1){
+			System.out.println("Je touche un objet");
+			return item;
+		}else{
+			System.out.println(currentPosItem);
+			
+		}
+		}
+		
+		return null;
+	}
+	
+	private float dist2(PointF CoordItem,float X,float Y){
+		return (float) Math.sqrt(Math.pow(CoordItem.x-X, 2)+Math.pow(CoordItem.y-Y, 2));
+		
+		
 	}
 
 
