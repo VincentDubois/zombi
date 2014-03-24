@@ -76,9 +76,11 @@ public class Deplacer implements Action {
 						    (target.y-bear.posF.y)/d*speed);  //bear.targetF remplacer par target
 			}
 			Background.toScreen(bear.posF, bear.posS);
-		}
-		if (jump==true && bear.canJump()){
-			bear.jump();
+			if (jump==true && bear.canJump()){
+				bear.jump();
+			}
+		} else {
+			mouvementSuivant.move();
 		}
 	}
 
