@@ -27,7 +27,7 @@ public class Wait extends Deplacer {
 	}
 	
 	public int getIndex(){
-		return 1;
+		return 20;
 	}
 
 }

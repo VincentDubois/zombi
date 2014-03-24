@@ -32,6 +32,7 @@ public class GameView extends SurfaceView implements Callback {
 		
 		RefreshHandler(GameView gameRenderer){
 			weak = new WeakReference(gameRenderer);
+			
 		}
 
 		@Override
