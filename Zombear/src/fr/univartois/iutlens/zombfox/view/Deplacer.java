@@ -9,7 +9,7 @@ import fr.univartois.iutlens.zombfox.R;
 public class Deplacer implements Action {
 
 
-	public float SPEED = 0.1f;
+	public float SPEED = 1f;
 
 	
 	// champ bear
