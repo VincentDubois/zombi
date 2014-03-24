@@ -1,10 +1,15 @@
 package com.example.zombear;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.view.Gravity;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.zombear.view.Bear;
 import com.example.zombear.view.GameView;
@@ -21,30 +26,35 @@ public class MainActivity extends Activity {
 		
 		Float faim = myPrefs.getFloat("faim", 50f);
 		Float sommeil = myPrefs.getFloat("sommeil", 50f);
+		Float ennui = myPrefs.getFloat("ennui", 50f);
 		Long lastUpdate = myPrefs.getLong("lastUpdate", 0);
 		
 		Bundle b = new Bundle();
 		b.putDouble("faim", (double) faim);
 		b.putDouble("sommeil", (double) sommeil);
+		b.putDouble("ennui", (double) ennui);
 		b.putLong("lastUpdate", lastUpdate);
 		
 		setContentView(R.layout.activity_main);
+		new AlertDialog.Builder(this).setTitle("Zombear").setMessage(" Bienvenue dans l'univers Zombear, prenez bien soin de lui ! ").setNeutralButton("Entrez",null).show(); 
+		
+		
+		
 		
 		if(savedInstanceState == null){
 			if(lastUpdate != 0){
-				Log.d("lancement", "1");
 				bear = new Bear(this, b);
 			}
 			else{
-				Log.d("lancement", "2");
 				bear = new Bear(this);
 			}
 		}
 		else{
-			Log.d("lancement", "3");
 			bear = new Bear(this, savedInstanceState.getBundle("bear"));
 		}
 		((GameView) findViewById(R.id.gameView1)).setBear(bear);
+		
+		activity =this;
 		
 	}
 
@@ -53,6 +63,21 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch (item.getItemId()){
+		
+		case R.id.action_settings:
+			new AlertDialog.Builder(this).setTitle("A propos").setMessage(" Application réalisée par le groupe Web 1  \n 2014").setNeutralButton("Fermer",null).show(); return true;
+			
+			default:
+				return super.onOptionsItemSelected(item);
+				
+		
+		}
+		
 	}
 
 	@Override
@@ -75,9 +100,32 @@ public class MainActivity extends Activity {
 		SharedPreferences.Editor ed = myPrefs.edit();
 		ed.putFloat("faim", (float) b.getDouble("faim"));
 		ed.putFloat("sommeil", (float) b.getDouble("sommeil"));
+		ed.putFloat("ennui", (float) b.getDouble("ennui"));
 		ed.putLong("lastUpdate", b.getLong("lastUpdate"));
 		ed.commit();
 	}
 	
-
+    private MediaPlayer mPlayer = null;
+    private static MainActivity activity;
+    
+    public void stopSound() {
+        super.onPause();
+        if(mPlayer != null) {
+            mPlayer.stop();
+            mPlayer.release();
+        }
+    }
+    
+    public static void playSound(int resId) {
+    	if (activity == null) return;
+    	
+    	
+        if(activity.mPlayer != null) {
+        	activity.mPlayer.stop();
+        	activity.mPlayer.release();
+        }
+        activity.mPlayer = MediaPlayer.create(activity, resId);
+        activity.mPlayer.start();
+    }
 }
+	
