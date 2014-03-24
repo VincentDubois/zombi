@@ -37,14 +37,16 @@ public class Item {
 	
 	
 	
-	public Item(boolean dispo, int etat, int position_sprite, SpriteSheet sprite) {
+	public Item(boolean dispo, int etat, int position_sprite, SpriteSheet sprite,
+			PointF posS) {
 		super();
 		this.dispo = dispo;
 		this.etat = etat;
 		this.position_sprite = position_sprite;
 		paintBlack.setColor(0x77000000);
-		this.posS = new PointF(0.5f,0.5f);
+		
 		this.sprite = sprite;
+		this.posS=posS;
 	}
 
 
@@ -72,7 +74,13 @@ public class Item {
 		position_sprite = p;
 	}
 	
+	public PointF setPosS(){
+		return posS;
+	}
 	
+	public void getPosS(PointF p){
+		posS = p;
+	}
 	
 	
 	
@@ -89,13 +97,13 @@ public class Item {
 		float xc = posS.x*canvas.getWidth(); //*floorToScreen(x,yp);
 		float yc = posS.y*canvas.getHeight()+70; //*yp;
 		//PARAMETRE : SPRITE(ID) rectF(-x,-y,+x,+y)
-		canvas.drawBitmap(sprite.getBitmap(0),null, new RectF(
+		canvas.drawBitmap(sprite.getBitmap(position_sprite),null, new RectF(
 				xc-s, yc-2*PROPORTION_YC*s,xc+s,yc+(2*s-2*s*PROPORTION_YC))
 		, null);
 		
 		
-			canvas.drawCircle(xc,
-					yc, 50, paintBlack );
+		/*	canvas.drawCircle(xc,
+					yc, 50, paintBlack );*/
 	}
 
 }

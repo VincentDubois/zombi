@@ -8,6 +8,7 @@ import com.example.zombear.utils.SpriteSheet;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
@@ -72,8 +73,15 @@ public class GameView extends SurfaceView implements Callback {
 		running = false;
 		background = new Background(context);
 		getHolder().addCallback(this);
+		
+		//Objet dans la scène
+		
+		//Collection
+		
+		
 		SpriteSheet sprite = new SpriteSheet(context, R.drawable.gamelle,1,1);
-		item = new Item(true, 0, 0, sprite);
+		PointF itemPosS = new PointF(0.5f,0.5f);
+		item = new Item(true, 0, 0, sprite, itemPosS);
 	}
 
 	public void setBear(Bear bear){
