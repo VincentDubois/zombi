@@ -38,7 +38,7 @@ public class Wait implements Action {
 	}
 	
 	public int getIndex(){
-		return 1;
+		return 20;
 	}
 
 	@Override
