@@ -7,12 +7,12 @@ import android.util.Log;
 
 public class Etat {
 
+	private static final double TIME_FACTOR = 0.01;
+	// 1 = Normal | 0.01 = Rapide
+	
 	public Jauge faim;
-
 	public Jauge sommeil;
-
-	public Jauge bonheur;
-
+	public Jauge ennui;
 	public Jauge zombification;
 	
 	public Boolean malade = false;
@@ -21,21 +21,18 @@ public class Etat {
 	public long lastUpdate;
 	
 	public Etat(){
-		Log.d("Zomb", "Initialisation");
 		faim = new Jauge();
 		sommeil = new Jauge();
-		bonheur = new Jauge();
+		ennui = new Jauge();
 		zombification = new Jauge();
 		lastUpdate = new Date().getTime();
-		Log.d("Zomb", "Update");
 		update();
 	}
 	
 	public Etat(Bundle b){
-		Log.d("Zomb", "Initialisation via un Bundle");
 		faim = new Jauge(b.getDouble("faim"));
 		sommeil= new Jauge(b.getDouble("sommeil"));
-		bonheur = new Jauge();
+		ennui = new Jauge(b.getDouble("ennui"));
 		zombification = new Jauge();
 		lastUpdate = b.getLong("lastUpdate");
 		update();
@@ -57,6 +54,7 @@ public class Etat {
 		Bundle b = new Bundle();
 		b.putDouble("faim", faim.getNiveau());
 		b.putDouble("sommeil", sommeil.getNiveau());
+		b.putDouble("ennui", ennui.getNiveau());
 		b.putLong("lastUpdate", lastUpdate);
 		return b;
 	}
@@ -64,10 +62,10 @@ public class Etat {
 	public void update(){
 		long time = new Date().getTime();
 		long tempsEcoule = time - lastUpdate;
-		diminuerNiveauJauge(faim, (double)tempsEcoule/6000);
-		if(endormi) augmenterNiveauJauge(sommeil, (double)tempsEcoule/8000);
-		else diminuerNiveauJauge(sommeil, (double)tempsEcoule/12000);
-		Log.d("update", "Faim : "+faim+" | Sommeil : "+sommeil);
+		diminuerNiveauJauge(faim, (double)tempsEcoule/(600000*TIME_FACTOR));
+		if(endormi) augmenterNiveauJauge(sommeil, (double)tempsEcoule/(800000*TIME_FACTOR));
+		else diminuerNiveauJauge(sommeil, (double)tempsEcoule/(1200000*TIME_FACTOR));
+		Log.d("jauge", getNiveauJauge(faim) + " - " + getNiveauJauge(sommeil));
 		lastUpdate = time;
 	}
 

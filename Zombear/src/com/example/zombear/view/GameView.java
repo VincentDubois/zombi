@@ -2,6 +2,9 @@ package com.example.zombear.view;
 
 import java.lang.ref.WeakReference;
 
+import com.example.zombear.R;
+import com.example.zombear.utils.SpriteSheet;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -14,7 +17,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
-// moteur du jeu....
+
 
 public class GameView extends SurfaceView implements Callback {
 
@@ -23,6 +26,7 @@ public class GameView extends SurfaceView implements Callback {
 	
 	private boolean running;
 	
+	private Item item;
 	static class RefreshHandler extends Handler {
 		WeakReference<GameView> weak;
 		
@@ -68,6 +72,8 @@ public class GameView extends SurfaceView implements Callback {
 		running = false;
 		background = new Background(context);
 		getHolder().addCallback(this);
+		SpriteSheet sprite = new SpriteSheet(context, R.drawable.gamelle,1,1);
+		item = new Item(true, 0, 0, sprite);
 	}
 
 	public void setBear(Bear bear){
@@ -80,6 +86,8 @@ public class GameView extends SurfaceView implements Callback {
 		if (background != null){
 			background.paint(canvas,rect);
 		}
+		if (item != null)
+			item.paint( canvas);
 		if (bear != null)
 			bear.paint( canvas);
 	}

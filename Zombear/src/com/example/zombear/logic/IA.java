@@ -114,7 +114,7 @@ public class IA {
 		
 		return deplacement;
 	}
-	
+
 		public Bundle getSaveBundle(){
 			return etat.getSaveBundle();
 		}
