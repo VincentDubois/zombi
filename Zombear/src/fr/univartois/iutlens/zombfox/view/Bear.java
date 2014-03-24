@@ -36,7 +36,7 @@ public class Bear {
 
 	public Bear(Context context){
 		//bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.zombear_sprite);
-		sprite = new SpriteSheet(context, R.drawable.foxy_sprite,2,2);
+		sprite = new SpriteSheet(context, R.drawable.sprites_allfinal,5,5);
 		paintBlack.setColor(0x77000000);
 		
 		posF = new PointF(0.5f,0.5f);
@@ -61,7 +61,7 @@ public class Bear {
 	
 	public Bear(Context context, Bundle b){
 		//bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.zombear_sprite);
-		sprite = new SpriteSheet(context, R.drawable.foxy_sprite,2,2);
+		sprite = new SpriteSheet(context, R.drawable.sprites_allfinal,5,5);
 		paintBlack.setColor(0x77000000);
 		
 		posF = new PointF(0.5f,0.5f);
@@ -90,7 +90,7 @@ public class Bear {
 		float xc = posS.x*canvas.getWidth(); //*floorToScreen(x,yp);
 		float yc = (posS.y-z*Background.scale(posS.y))*canvas.getHeight(); //*yp;
 		//PARAMETRE : SPRITE(ID) rectF(-x,-y,+x,+y)
-		canvas.drawBitmap(sprite.getBitmap(0),null, new RectF(
+		canvas.drawBitmap(sprite.getBitmap(deplace.getIndex()),null, new RectF(
 				xc-s, yc-2*PROPORTION_YC*s,xc+s,yc+(2*s-2*s*PROPORTION_YC))
 		, null);
 		

@@ -2,7 +2,10 @@ package fr.univartois.iutlens.zombfox;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.view.Gravity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +13,7 @@ import fr.univartois.iutlens.zombfox.view.Bear;
 import fr.univartois.iutlens.zombfox.view.GameView;
 
 public class MainActivity extends Activity {
+	
 	
 	Bear bear;
 	private SharedPreferences myPrefs;
@@ -30,7 +34,7 @@ public class MainActivity extends Activity {
 		b.putDouble("ennui", (double) ennui);
 		b.putLong("lastUpdate", lastUpdate);
 		
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main); 
 		new AlertDialog.Builder(this).setTitle("Zombear").setMessage(" Bienvenue dans l'univers Zombear, prenez bien soin de lui ! ").setNeutralButton("Entrez",null).show(); 
 		
 		
@@ -49,6 +53,8 @@ public class MainActivity extends Activity {
 		}
 		((GameView) findViewById(R.id.gameView1)).setBear(bear);
 		
+		activity =this;
+		
 	}
 
 	@Override
@@ -63,8 +69,8 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()){
 		
 		case R.id.action_settings:
-			new AlertDialog.Builder(this).setTitle("A propos").setMessage(" Application réalisée par le groupe Web 1  \n 2014").setNeutralButton("Fermer",null).show(); return true;
-			
+			Intent intent=new Intent(MainActivity.this, Apropos.class);
+			startActivity(intent);
 			default:
 				return super.onOptionsItemSelected(item);
 				
@@ -98,5 +104,27 @@ public class MainActivity extends Activity {
 		ed.commit();
 	}
 	
-
+    private MediaPlayer mPlayer = null;
+    private static MainActivity activity;
+    
+    public void stopSound() {
+        super.onPause();
+        if(mPlayer != null) {
+            mPlayer.stop();
+            mPlayer.release();
+        }
+    }
+    
+    public static void playSound(int resId) {
+    	if (activity == null) return;
+    	
+    	
+        if(activity.mPlayer != null) {
+        	activity.mPlayer.stop();
+        	activity.mPlayer.release();
+        }
+        activity.mPlayer = MediaPlayer.create(activity, resId);
+        activity.mPlayer.start();
+    }
 }
+	

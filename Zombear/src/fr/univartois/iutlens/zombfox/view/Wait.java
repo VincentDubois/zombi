@@ -5,12 +5,23 @@ import fr.univartois.iutlens.zombfox.view.GameView.RefreshHandler;
 import android.graphics.PointF;
 import android.os.Handler;
 
-public class Wait extends Deplacer {
-	private int time = 1000; //en ms
+public class Wait implements Action {
+	
+	// champ bear
+	public Bear bear;
+	// jump
+	public boolean jump;
+	//boolean fini
+	protected boolean fini;
+	//mouvement suivant
+	public Action mouvementSuivant;
+		
 	private int cpt;
 
-	public Wait(Bear bear, float speed, boolean jump, PointF target, int cpt) {
-		super(bear, speed, jump, target);
+	public Wait(Bear bear, boolean jump, int cpt) {
+		super();
+		this.bear = bear;
+		this.jump = jump;
 		this.cpt= cpt;
 	}
 	
@@ -19,7 +30,7 @@ public class Wait extends Deplacer {
 			cpt--;
 		}
 		else{
-			fini =true;
+			fini = true;
 		}
 		if (jump==true && bear.canJump()){
 			bear.jump();
@@ -27,7 +38,12 @@ public class Wait extends Deplacer {
 	}
 	
 	public int getIndex(){
-		return 1;
+		return 20;
+	}
+
+	@Override
+	public boolean isFini() {
+		return fini && (mouvementSuivant == null || mouvementSuivant.isFini() );
 	}
 
 }
