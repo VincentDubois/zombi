@@ -26,12 +26,14 @@ public class MainActivity extends Activity {
 		Float faim = myPrefs.getFloat("faim", 50f);
 		Float sommeil = myPrefs.getFloat("sommeil", 50f);
 		Float ennui = myPrefs.getFloat("ennui", 50f);
+		Float zombification = myPrefs.getFloat("zombification", 80f);
 		Long lastUpdate = myPrefs.getLong("lastUpdate", 0);
 		
 		Bundle b = new Bundle();
 		b.putDouble("faim", (double) faim);
 		b.putDouble("sommeil", (double) sommeil);
 		b.putDouble("ennui", (double) ennui);
+		b.putDouble("zombification", (double) zombification);
 		b.putLong("lastUpdate", lastUpdate);
 		
 		setContentView(R.layout.activity_main); 
@@ -100,6 +102,7 @@ public class MainActivity extends Activity {
 		ed.putFloat("faim", (float) b.getDouble("faim"));
 		ed.putFloat("sommeil", (float) b.getDouble("sommeil"));
 		ed.putFloat("ennui", (float) b.getDouble("ennui"));
+		ed.putFloat("zombification", (float) b.getDouble("zombification"));
 		ed.putLong("lastUpdate", b.getLong("lastUpdate"));
 		ed.commit();
 	}
