@@ -30,17 +30,19 @@ public class Deplacer implements Action {
 	
 	
 	
-	public Deplacer(Bear bear,float speed, boolean jump, PointF target) {
+	public Deplacer(Bear bear,float speed, boolean jump, PointF target, int son ) {
 		super();
 		this.bear = bear;
 		this.speed = speed*SPEED;
 		this.jump = jump;
 		this.target = target;
 		fini =false;
+		if (son > -1){
+		MainActivity.playSound(son);
+		}
 	}
-	
 	public Deplacer(Bear bear,float speed, boolean jump, PointF target, Action mouvementSuivant) {
-		this(bear, speed, jump, target);
+		this(bear, speed, jump, target, -1);
 		this.mouvementSuivant = mouvementSuivant;
 	}
 
@@ -65,7 +67,6 @@ public class Deplacer implements Action {
 	 */
 	@Override
 	public void move() { //mettre en champ float speed
-		MainActivity.playSound(R.raw.dead);
 		if (!fini){  //--------------------------------
 			float d = dist(target,bear.posF);
 			if (dist(target,bear.posF) < speed) {

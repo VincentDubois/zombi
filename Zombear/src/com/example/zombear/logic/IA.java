@@ -1,7 +1,10 @@
 package com.example.zombear.logic;
 
+
+
 import android.graphics.PointF;
 
+import com.example.zombear.R;
 import com.example.zombear.view.Action;
 import com.example.zombear.view.Bear;
 import com.example.zombear.view.Deplacer;
@@ -51,14 +54,14 @@ public class IA {
 			
 			if(etat.getNiveauJauge(etat.sommeil)<=48){
 				if(Math.random()<=0.01){
-					return deplacement = new Deplacer(zombie,0.15f,true,coordonneeFaim);
+					return deplacement = new Deplacer(zombie,0.15f,true,coordonneeFaim,R.raw.wouf);
 				}
 				else
-					deplacement = new Deplacer(zombie,0.1f,false,target);
+					deplacement = new Deplacer(zombie,0.1f,false,target,-1);
 			}
 			
 			
-			deplacement = new Deplacer(zombie,0.1f,false,target);
+			deplacement = new Deplacer(zombie,0.1f,false,target,-1);
 			
 		}
 		

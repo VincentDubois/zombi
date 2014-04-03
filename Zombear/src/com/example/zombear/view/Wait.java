@@ -1,5 +1,6 @@
 package com.example.zombear.view;
 
+import com.example.zombear.R;
 import com.example.zombear.view.GameView.RefreshHandler;
 
 import android.graphics.PointF;
@@ -10,7 +11,7 @@ public class Wait extends Deplacer {
 	private int cpt;
 
 	public Wait(Bear bear, float speed, boolean jump, PointF target, int cpt) {
-		super(bear, speed, jump, target);
+		super(bear, speed, jump, target, R.raw.reniffle);
 		this.cpt= cpt;
 	}
 	
