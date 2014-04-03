@@ -2,6 +2,7 @@ package fr.univartois.iutlens.zombfox.view;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -87,9 +88,9 @@ public class GameView extends SurfaceView implements Callback {
 		SpriteSheet spriteBalle = new SpriteSheet(context, R.drawable.balle,1,1);
 		PointF itemPosSBalle = new PointF(0.1f,0.7f);
 		listItem = new ArrayList<Item>();
-		listItem.add(new Item(true, 0, 0, spriteBalle, itemPosSBalle));
-		listItem.add(new Item(true, 0, 0, spriteOs, itemPosSOs));
-		listItem.add(new Item(true, 0, 0, spriteGamelle, itemPosSGamelle));
+		listItem.add(new Item(true, 0, 0, "jouer", spriteBalle, itemPosSBalle));
+		listItem.add(new Item(true, 0, 0, "manger", spriteOs, itemPosSOs));
+		listItem.add(new Item(true, 0, 0, "manger", spriteGamelle, itemPosSGamelle));
 	}
 
 	public void setBear(Bear bear){
@@ -158,6 +159,7 @@ public class GameView extends SurfaceView implements Callback {
 		}
 		//Si item selectionné ->> déplacement de l'item
 		if(event.getAction() == MotionEvent.ACTION_MOVE && itemSelected != null){
+			//Empecher de depasser la ligne d'horizon
 			if(event.getY()/getHeight()<background.y_min){
 				PointF currentPosS = new PointF(event.getX()/getWidth(),background.y_min);
 				itemSelected.setPosS(currentPosS);
@@ -165,10 +167,7 @@ public class GameView extends SurfaceView implements Callback {
 				PointF currentPosS = new PointF(event.getX()/getWidth(),event.getY()/getHeight());
 				itemSelected.setPosS(currentPosS);
 			}
-			
-			//currentPosS.x = event.getX()/getWidth();
-			//currentPosS.y = event.getY()/getHeight();
-			
+		
 		}
 		return true;
 	}
@@ -187,6 +186,22 @@ public class GameView extends SurfaceView implements Callback {
 		}
 		
 		return null;
+	}
+	
+	public Item getItemByAction(String action){
+		ArrayList<Item> listItemAction = new ArrayList<Item>();
+		for(Item item: listItem){
+			if(item.getAction().equals(action)){
+				listItemAction.add(item);
+			}
+		}
+		if(listItemAction.isEmpty()){
+			return null;
+		}else{
+			Random r = new Random();
+			int valeur = r.nextInt(listItemAction.size());
+			return listItemAction.get(valeur);
+		}
 	}
 	
 	private float dist2(PointF CoordItem,float X,float Y){

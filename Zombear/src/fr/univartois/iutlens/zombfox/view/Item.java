@@ -19,8 +19,7 @@ public class Item {
 	private boolean dispo; //Disponnibilit� en fonction des jauges
 	private  int etat; //Etat visuel de l'objet (ex : plein/vide...)
 	private int position_sprite; //Numero du sprite
-	
-	
+	private String action;
 	private float SPEED = 0.01f;
 	private float G = 0.005f;
 	private float PROPORTION_YC = 0.5f; //entre 0 et 1
@@ -37,11 +36,12 @@ public class Item {
 	
 	
 	
-	public Item(boolean dispo, int etat, int position_sprite, SpriteSheet sprite,
+	public Item(boolean dispo, int etat, int position_sprite, String action, SpriteSheet sprite,
 			PointF posS) {
 		super();
 		this.dispo = dispo;
 		this.etat = etat;
+		this.action = action;
 		this.position_sprite = position_sprite;
 		paintBlack.setColor(0x77000000);
 		
@@ -82,8 +82,16 @@ public class Item {
 		posS = p;
 	}
 	
-	
-	
+	public String getAction() {
+		return action;
+	}
+
+
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
 	
 	
 	
