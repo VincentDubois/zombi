@@ -2,6 +2,7 @@ package fr.univartois.iutlens.zombfox.logic;
 
 import java.util.Date;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -67,8 +68,8 @@ public class Etat {
 		diminuerNiveauJauge(sommeil, (double)tempsEcoule/(1200000*TIME_FACTOR));
 		augmenterNiveauJauge(ennui, (double)tempsEcoule/(800000*TIME_FACTOR));
 		
-		if(Math.random() <= 0.02){
-			int moyenne = (int) ((2*getNiveauJauge(faim)+1.5*getNiveauJauge(ennui)+getNiveauJauge(sommeil))/4.5);
+		if(Math.random() <= 0.2){
+			int moyenne = (int) ((2*getNiveauJauge(faim)+(-0.5*getNiveauJauge(ennui))+getNiveauJauge(sommeil))/4.5);
 			if(moyenne <= 20){
 				augmenterNiveauJauge(zombification, 0.3);
 			}
@@ -95,6 +96,7 @@ public class Etat {
 		}
 		
 		Log.d("jauge", getNiveauJauge(faim) + " - " + getNiveauJauge(sommeil) + " - " + getNiveauJauge(ennui));
+		
 		lastUpdate = time;
 	}
 

@@ -37,10 +37,7 @@ public class MainActivity extends Activity {
 		b.putLong("lastUpdate", lastUpdate);
 		
 		setContentView(R.layout.activity_main); 
-		new AlertDialog.Builder(this).setTitle("Zombear").setMessage(" Bienvenue dans l'univers Zombear, prenez bien soin de lui ! ").setNeutralButton("Entrez",null).show(); 
-		
-		
-		
+		new AlertDialog.Builder(this).setTitle("Zombear").setMessage("Bienvenue dans l'univers Zombear, prenez bien soin de lui !").setNeutralButton("Entrez",null).show(); 
 		
 		if(savedInstanceState == null){
 			if(lastUpdate != 0){
@@ -56,6 +53,10 @@ public class MainActivity extends Activity {
 		((GameView) findViewById(R.id.gameView1)).setBear(bear);
 		
 		activity =this;
+		
+		if(bear.ia.etat.getNiveauJauge(bear.ia.etat.faim) == 0 && bear.ia.etat.getNiveauJauge(bear.ia.etat.sommeil) == 0 && bear.ia.etat.getNiveauJauge(bear.ia.etat.zombification) == 100){
+			new AlertDialog.Builder(this).setTitle("Zombear").setMessage("T'AS TUÉ TON ZOMBI").setNeutralButton("Le résurectionner",null).show(); 
+		}
 		
 	}
 
