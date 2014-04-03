@@ -1,4 +1,4 @@
-package com.example.zombear.utils;
+package fr.univartois.iutlens.zombfox.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
