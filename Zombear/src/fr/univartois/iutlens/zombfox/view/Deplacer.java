@@ -74,23 +74,22 @@ public class Deplacer implements Action {
 	@Override
 	public void move() { //mettre en champ float speed
 
-		
-		anim = (anim+1) %6;
-		
+		MainActivity.playSound(R.raw.wouf);
+		anim = (anim+1) %8;
 		if (!fini){  //--------------------------------
 			float d = dist(target,bear.posF);
 			if (dist(target,bear.posF) < speed) {
 				bear.posF.set(target);
 				fini = true; //arrivé a dst...
-				index = 20;
+				index = 24;
 			} else {
 				if ((target.x-bear.posF.x)<0){
 					index = 0;
 				}else {
-					index = 4;
+					index = 5;
 				}
 				if ((target.y-bear.posF.y)>0){
-					index += 8;
+					index += 11;
 				}
 				bear.posF.offset((target.x-bear.posF.x)/d*speed,
 						    (target.y-bear.posF.y)/d*speed);  //bear.targetF remplacer par target

@@ -17,12 +17,24 @@ public class Wait implements Action {
 	public Action mouvementSuivant;
 		
 	private int cpt;
+	private int index;
 
-	public Wait(Bear bear, boolean jump, int cpt) {
+	public Wait(Bear bear, boolean jump, int cpt, boolean ferme, boolean baille) {
 		super();
 		this.bear = bear;
 		this.jump = jump;
 		this.cpt= cpt;
+		index = 24;
+		if (ferme==true){
+			index=28;
+		}else {
+			index=24;
+		}
+		if (baille==true){
+			index=27;
+		}else {
+			index=24;
+		}
 	}
 	
 	public void move()  { //mettre en champ float speed
@@ -38,7 +50,7 @@ public class Wait implements Action {
 	}
 	
 	public int getIndex(){
-		return 20;
+		return index;
 	}
 
 	@Override

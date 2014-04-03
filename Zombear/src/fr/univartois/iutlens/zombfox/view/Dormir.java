@@ -8,7 +8,7 @@ public class Dormir implements Action {
 	private Bear bear;
 	private boolean fini;
 
-	private int index = 16;
+	private int index = 20;
 
 	private int anim = 0;
 
