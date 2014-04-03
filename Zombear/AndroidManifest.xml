@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name="com.example.zombear.Apropos"></activity>
+            android:name="fr.univartois.iutlens.zombfox.Apropos"></activity>
     </application>
 
 </manifest>
