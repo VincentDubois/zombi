@@ -1,4 +1,4 @@
-package com.example.zombear.view;
+package fr.univartois.iutlens.zombfox.view;
 
 public interface Action {
 

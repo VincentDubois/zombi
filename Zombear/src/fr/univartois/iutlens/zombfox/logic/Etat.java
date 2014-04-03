@@ -1,4 +1,4 @@
-package com.example.zombear.logic;
+package fr.univartois.iutlens.zombfox.logic;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class Etat {
 
-	private static final double TIME_FACTOR = 0.01;
+	private static final double TIME_FACTOR = 0.001;
 	// 1 = Normal | 0.01 = Rapide
 	
 	public Jauge faim;
@@ -63,9 +63,9 @@ public class Etat {
 		long time = new Date().getTime();
 		long tempsEcoule = time - lastUpdate;
 		diminuerNiveauJauge(faim, (double)tempsEcoule/(600000*TIME_FACTOR));
-		if(endormi) augmenterNiveauJauge(sommeil, (double)tempsEcoule/(800000*TIME_FACTOR));
-		else diminuerNiveauJauge(sommeil, (double)tempsEcoule/(1200000*TIME_FACTOR));
-		Log.d("jauge", getNiveauJauge(faim) + " - " + getNiveauJauge(sommeil));
+		diminuerNiveauJauge(sommeil, (double)tempsEcoule/(1200000*TIME_FACTOR));
+		augmenterNiveauJauge(ennui, (double)tempsEcoule/(800000*TIME_FACTOR));
+		Log.d("jauge", getNiveauJauge(faim) + " - " + getNiveauJauge(sommeil) + " - " + getNiveauJauge(ennui));
 		lastUpdate = time;
 	}
 

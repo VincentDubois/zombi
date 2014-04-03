@@ -1,4 +1,4 @@
-package com.example.zombear.logic;
+package fr.univartois.iutlens.zombfox.logic;
 public class Jauge {
 
 	private double niveau;

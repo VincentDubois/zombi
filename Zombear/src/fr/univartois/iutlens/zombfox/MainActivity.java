@@ -1,18 +1,16 @@
-package com.example.zombear;
+package fr.univartois.iutlens.zombfox;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.Gravity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.example.zombear.view.Bear;
-import com.example.zombear.view.GameView;
+import fr.univartois.iutlens.zombfox.view.Bear;
+import fr.univartois.iutlens.zombfox.view.GameView;
 
 public class MainActivity extends Activity {
 	
@@ -54,6 +52,8 @@ public class MainActivity extends Activity {
 			bear = new Bear(this, savedInstanceState.getBundle("bear"));
 		}
 		((GameView) findViewById(R.id.gameView1)).setBear(bear);
+		
+		activity =this;
 		
 	}
 
@@ -104,5 +104,27 @@ public class MainActivity extends Activity {
 		ed.commit();
 	}
 	
-
+    private MediaPlayer mPlayer = null;
+    private static MainActivity activity;
+    
+    public void stopSound() {
+        super.onPause();
+        if(mPlayer != null) {
+            mPlayer.stop();
+            mPlayer.release();
+        }
+    }
+    
+    public static void playSound(int resId) {
+    	if (activity == null) return;
+    	
+    	
+        if(activity.mPlayer != null) {
+        	activity.mPlayer.stop();
+        	activity.mPlayer.release();
+        }
+        activity.mPlayer = MediaPlayer.create(activity, resId);
+        activity.mPlayer.start();
+    }
 }
+	
