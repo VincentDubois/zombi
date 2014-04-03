@@ -6,7 +6,7 @@ public class Manger implements Action {
 	private Bear bear;
 	private boolean fini;
 	
-	private int index = 18;
+	private int index = 22;
 	
 	private int anim = 0;
 

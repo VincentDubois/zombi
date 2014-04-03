@@ -78,19 +78,19 @@ public class IA {
 				
 				//=> environ une chance sur 1000 d'aller vers son coussin
 				if(Math.random()<=0.001/(etat.getNiveauJauge(etat.sommeil)+1)){
-					attente = new Wait(zombie,false,100);
+					attente = new Wait(zombie,false,100,false,false);
 					return deplacement = new Deplacer(zombie,0.1f,false,coordonneeDormir,attente);
 				}
 				//=> environ une chance sur 1000 de bailler
 				if(Math.random()<=0.001/(etat.getNiveauJauge(etat.sommeil)+1)){
 					//TODO Bailler
-					return deplacement = new Wait(zombie,false,100);
+					return deplacement = new Wait(zombie,false,100,false,true);
 				}
 				
 				//=> environ une chance sur 1000 de fermer les yeux
 				if(Math.random()<=0.001/(etat.getNiveauJauge(etat.sommeil)+1)){
 					//TODO fermer les yeux
-					return deplacement = new Wait(zombie,true,100);
+					return deplacement = new Wait(zombie,true,100,true,false);
 				}
 				else
 					deplacement = new Deplacer(zombie,0.03f,false,target);
