@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 		b.putLong("lastUpdate", lastUpdate);
 		
 		setContentView(R.layout.activity_main); 
-		new AlertDialog.Builder(this).setTitle("Zombear").setMessage(" Bienvenue dans l'univers Zombear, prenez bien soin de lui ! ").setNeutralButton("Entrez",null).show(); 
+		new AlertDialog.Builder(this).setTitle("Zombfox").setMessage(" Bienvenue dans l'univers Zombfox, prenez bien soin de lui ! ").setNeutralButton("Entrez",null).show(); 
 		
 		
 		
