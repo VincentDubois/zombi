@@ -121,6 +121,7 @@ public class MainActivity extends Activity {
     }
     
     public static void playSound(int resId) {
+    	//Log.d("playSound",""+resId);
     	if (activity == null) return;
     	
     	
@@ -129,6 +130,7 @@ public class MainActivity extends Activity {
         	activity.mPlayer.release();
         }
         activity.mPlayer = MediaPlayer.create(activity, resId);
+        if (activity.mPlayer != null)
         activity.mPlayer.start();
     }
 }

@@ -1,8 +1,10 @@
 package fr.univartois.iutlens.zombfox.logic;
 
+
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.Log;
+import fr.univartois.iutlens.zombfox.R;
 import fr.univartois.iutlens.zombfox.view.Action;
 import fr.univartois.iutlens.zombfox.view.Bear;
 import fr.univartois.iutlens.zombfox.view.Deplacer;
@@ -66,7 +68,7 @@ public class IA {
 			//il ne va pas dormir au click
 			if(etat.getNiveauJauge(etat.sommeil)>60){
 				//TODO empecher de dormir
-				deplacement = new Deplacer(zombie,0.1f,false,target);
+				deplacement = new Deplacer(zombie,0.1f,false,target,-1);
 			}
 			
 			
@@ -93,7 +95,7 @@ public class IA {
 					return deplacement = new Wait(zombie,true,100);
 				}
 				else
-					deplacement = new Deplacer(zombie,0.03f,false,target);
+					deplacement = new Deplacer(zombie,0.03f,false,target,-1);
 			}
 			
 			
@@ -111,13 +113,13 @@ public class IA {
 				//TODO empecher de dormir
 				//TODO empecher de jouer
 				else
-					deplacement = new Deplacer(zombie,0.015f,false,target);
+					deplacement = new Deplacer(zombie,0.015f,false,target,-1);
 			}
 			
 			
 			//Aucune des conditions précédentes n'a été rempli
 			else{
-				deplacement = new Deplacer(zombie,0.1f,false,target);
+				deplacement = new Deplacer(zombie,0.1f,false,target,-1);
 			}
 			
 		}
