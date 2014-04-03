@@ -26,19 +26,19 @@ public class MainActivity extends Activity {
 		Float faim = myPrefs.getFloat("faim", 50f);
 		Float sommeil = myPrefs.getFloat("sommeil", 50f);
 		Float ennui = myPrefs.getFloat("ennui", 50f);
+		Float zombification = myPrefs.getFloat("zombification", 80f);
 		Long lastUpdate = myPrefs.getLong("lastUpdate", 0);
 		
 		Bundle b = new Bundle();
 		b.putDouble("faim", (double) faim);
 		b.putDouble("sommeil", (double) sommeil);
 		b.putDouble("ennui", (double) ennui);
+		b.putDouble("zombification", (double) zombification);
 		b.putLong("lastUpdate", lastUpdate);
 		
 		setContentView(R.layout.activity_main); 
-		new AlertDialog.Builder(this).setTitle("Zombear").setMessage(" Bienvenue dans l'univers Zombear, prenez bien soin de lui ! ").setNeutralButton("Entrez",null).show(); 
-		
-		
-		
+
+		new AlertDialog.Builder(this).setTitle("Zombfox").setMessage(" Bienvenue dans l'univers Zombfox, prenez bien soin de lui ! ").setNeutralButton("Entrez",null).show(); 
 		
 		if(savedInstanceState == null){
 			if(lastUpdate != 0){
@@ -54,6 +54,10 @@ public class MainActivity extends Activity {
 		((GameView) findViewById(R.id.gameView1)).setBear(bear);
 		
 		activity =this;
+		
+		if(bear.ia.etat.getNiveauJauge(bear.ia.etat.faim) == 0 && bear.ia.etat.getNiveauJauge(bear.ia.etat.sommeil) == 0 && bear.ia.etat.getNiveauJauge(bear.ia.etat.zombification) == 100){
+			new AlertDialog.Builder(this).setTitle("Zombear").setMessage("T'AS TUÉ TON ZOMBI").setNeutralButton("Le résurectionner",null).show(); 
+		}
 		
 	}
 
@@ -100,6 +104,7 @@ public class MainActivity extends Activity {
 		ed.putFloat("faim", (float) b.getDouble("faim"));
 		ed.putFloat("sommeil", (float) b.getDouble("sommeil"));
 		ed.putFloat("ennui", (float) b.getDouble("ennui"));
+		ed.putFloat("zombification", (float) b.getDouble("zombification"));
 		ed.putLong("lastUpdate", b.getLong("lastUpdate"));
 		ed.commit();
 	}

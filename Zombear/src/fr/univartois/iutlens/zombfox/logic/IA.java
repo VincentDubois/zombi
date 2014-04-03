@@ -104,8 +104,8 @@ public class IA {
 			else if(etat.getNiveauJauge(etat.sommeil)<=20){
 				if(Math.random()<=0.0002/(etat.getNiveauJauge(etat.sommeil)+1)){
 					// Semblant de fonction dormir
-					attente = new Wait(zombie,false,1000);
-					etat.augmenterNiveauJauge(etat.sommeil,40);
+					attente = new Dormir(zombie);
+					//etat.augmenterNiveauJauge(etat.sommeil,40);
 					return deplacement = new Deplacer(zombie,0.1f,false,coordonneeDormir,attente);
 				}
 				//TODO empecher de dormir

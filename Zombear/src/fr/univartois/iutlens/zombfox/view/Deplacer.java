@@ -59,7 +59,11 @@ public class Deplacer implements Action {
 	 */
 	@Override
 	public int getIndex(){
-		return index + anim/2;
+		if (!fini || mouvementSuivant == null){  
+			return index + anim/2;
+		} else {
+			return mouvementSuivant.getIndex();
+		}
 	}
 	
 
