@@ -1,8 +1,10 @@
 package fr.univartois.iutlens.zombfox.logic;
 
+
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.Log;
+import fr.univartois.iutlens.zombfox.R;
 import fr.univartois.iutlens.zombfox.view.Action;
 import fr.univartois.iutlens.zombfox.view.Bear;
 import fr.univartois.iutlens.zombfox.view.Deplacer;
