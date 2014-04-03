@@ -19,14 +19,14 @@ public class Dormir implements Action {
 
 	public void move(){
 		anim = (anim+1) %20;
-		if (Math.random()< 0.1f){
+	
 			if(bear.ia.etat.getNiveauJauge(bear.ia.etat.sommeil) < 90 ){
 				bear.ia.etat.augmenterNiveauJauge(bear.ia.etat.sommeil, 1);
 			}
 			else{
 				fini = true;
 			}
-		}
+		
 	}
 
 	@Override
