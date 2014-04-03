@@ -21,7 +21,7 @@ import fr.univartois.iutlens.zombfox.utils.SpriteSheet;
 
 
 public class GameView extends SurfaceView implements Callback {
-	private Item itemSelected;
+	private Item itemSelected = null;
 	private Bear bear;
 	private Background background;
 	
@@ -146,12 +146,28 @@ public class GameView extends SurfaceView implements Callback {
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if (event.getAction() == MotionEvent.ACTION_DOWN ||
-				event.getAction() == MotionEvent.ACTION_MOVE){
-			bear.setTarget(event.getX()/getWidth(),event.getY()/getHeight());
-		}
+		//On vérifie si un item est selectionné lorsqu'on touch l'ecran
 		if(event.getAction() == MotionEvent.ACTION_DOWN ){
 			itemSelected = getItem(event.getX()/getWidth(),event.getY()/getHeight());
+			
+		}
+		//Si pas d'item selectionné ->> déplacement du zombi
+		if (event.getAction() == MotionEvent.ACTION_DOWN ||
+				event.getAction() == MotionEvent.ACTION_MOVE && itemSelected==null){
+			bear.setTarget(event.getX()/getWidth(),event.getY()/getHeight());
+		}
+		//Si item selectionné ->> déplacement de l'item
+		if(event.getAction() == MotionEvent.ACTION_MOVE && itemSelected != null){
+			if(event.getY()/getHeight()<background.y_min){
+				PointF currentPosS = new PointF(event.getX()/getWidth(),background.y_min);
+				itemSelected.setPosS(currentPosS);
+			}else{
+				PointF currentPosS = new PointF(event.getX()/getWidth(),event.getY()/getHeight());
+				itemSelected.setPosS(currentPosS);
+			}
+			
+			//currentPosS.x = event.getX()/getWidth();
+			//currentPosS.y = event.getY()/getHeight();
 			
 		}
 		return true;
